@@ -1,2 +1,4 @@
 db.sqlite3
 gastocomumapp/__pycache__/*
+apps/accounts/__pycache__/*
+apps/accounts/migrations/*
