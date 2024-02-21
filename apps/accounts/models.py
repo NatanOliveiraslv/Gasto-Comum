@@ -1,13 +1,12 @@
 from django.db import models
+from django.contrib.auth.models import User
 
-class Accounts(models.Model):
-    name = models.CharField('Nome', max_length=50)
-    description = models.TextField('Descricao', max_length=100)
+
+class User(models.Model):
+    first_name = models.CharField('Nome', max_length=50)
+    last_name = models.CharField('Sobrenome', max_length=100) 
+    email = models.EmailField('E-mail', null=True, blank=False)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     
-    class Meta:
-        verbose_name = 'Contas'
-        verbose_name_plural = 'Contas'
-        ordering =['id']
-
     def __str__(self):
-        return self.name
+        return self.first_name
