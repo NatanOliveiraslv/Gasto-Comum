@@ -16,11 +16,14 @@ def login(request):
         if user is not None:
             auth_login(request, user) #loga o usuário
             messages.error(request, 'Parabens, voce está logado!') 
-            return redirect('index')
+            return redirect('home')
         else:
             #se nao atenticar, é porque o ussuário ou senha está erradp
             messages.error(request, 'Usuário ou senha incorreto!') 
             return redirect('index')
     else:
         # Se arequisição nao for post
-        return render(request, 'login/login.html')
+        return render(request, 'login.html')
+    
+def home(request):
+    return render(request, 'home.html')
