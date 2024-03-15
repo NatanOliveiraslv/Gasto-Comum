@@ -10,15 +10,25 @@
 <body>
     <div class="container">
         <div class="item">
-            <div class="item-icon">Icon</div>
-            <div>
-                <h2>Mercado</h2>
-                <p>30 DEZ</p>
+            {% for spendings in spending %}
+            <div class="date">
+                <label class="date_d">{{spendings.spending.created_at|date:"d"}}</label>
+                <label class="date_m">{{spendings.spending.created_at|date:"M"}}</label>
             </div>
-            <div>
-                <h2>R$57,00</h2>
-                <p>Pendente</p>
+            <div class="container-felx-end">
+                <div class="cart-img">
+                    <img src="{% static 'images/shopping-cart.png' %}" >
+                </div>
+                <div>
+                    <p>{{spendings.spending.type}}</p>
+                    <p>{{spendings.spending.type}}</p>
+                </div>
+                <div>
+                    <p>R${{spendings.spending.value}}</p>
+                    <p>{{spendings.status}}</p>
+                </div>
             </div>
+            {% endfor%}
         </div>
         <!-- Repita o bloco .item para cada entrada -->
     </div>
