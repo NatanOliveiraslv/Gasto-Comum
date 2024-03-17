@@ -1,36 +1,52 @@
-<!DOCTYPE html>
-<html lang="en">
+
+{% extends 'base.html' %}
 {% load static %}
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="{% static 'style/home.css' %}">
-    <title>Home</title>
-</head>
-<body>
-    <div class="container">
-        <div class="item">
-            {% for spendings in spending %}
-            <div class="date">
+
+{% block css %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'style/home.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'style/navbar.css' %}">
+
+{% endblock %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    {% for spendings in spending %}
+    <div class="item">
+        <div class="date-line">
+            <div date>
                 <label class="date_d">{{spendings.spending.created_at|date:"d"}}</label>
                 <label class="date_m">{{spendings.spending.created_at|date:"M"}}</label>
             </div>
-            <div class="container-felx-end">
-                <div class="cart-img">
-                    <img src="{% static 'images/shopping-cart.png' %}" >
-                </div>
-                <div>
-                    <p>{{spendings.spending.type}}</p>
-                    <p>{{spendings.spending.type}}</p>
-                </div>
-                <div>
-                    <p>R${{spendings.spending.value}}</p>
-                    <p>{{spendings.status}}</p>
-                </div>
-            </div>
-            {% endfor%}
+            <div class="line"></div>
         </div>
-        <!-- Repita o bloco .item para cada entrada -->
+        <div class="valeu-spending">
+            <p class="value" >R${{spendings.spending.value}}</p>
+        </div>
+        <div class="container-felx-end">
+            <div class="cart-img">
+                <img src="{% static 'images/shopping-cart.png' %}" >
+            </div>
+            <div class="title-spending">
+                <p class="title">{{spendings.spending.type|lower }}</p>
+                <p class="description">{{spendings.spending.title|lower }}</p>
+            </div>
+            <div class="status-spending">
+                {% if spendings.status == "PAGO"%}
+                    <p class="status" style="background-color: #99CE85; color:white" >{{spendings.status|lower }}</p>
+                {% else %}
+                    <p class="status">{{spendings.status|lower }}</p>
+                {% endif %}
+            </div>
+        </div>
     </div>
-</body>
-</html>
+    {% endfor%}
+</div>
+  
+{% include "partials/navbar.html" %}
+
+{% endblock %}
+

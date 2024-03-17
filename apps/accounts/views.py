@@ -30,9 +30,12 @@ def home(request):
     # se o usuário estiver logado
     if request.user.is_authenticated:
         # Acessar informações do usuário
-        accounts = get_object_or_404(Accounts, user=request.user)
-        spending = Spending_Accounts.objects.filter(accounts = accounts)
-        return render(request, 'home.html', {'spending':spending})
+        try:
+            accounts = get_object_or_404(Accounts, user=request.user)
+            spending = Spending_Accounts.objects.filter(accounts = accounts)
+            return render(request, 'home.html', {'spending':spending})
+        except:
+            return redirect('index')
     else:
         messages.error(request, 'Usuário não autenticado. Faça o login para acessar a pagina desejada.')
         return redirect('index')
