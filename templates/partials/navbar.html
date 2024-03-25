@@ -1,6 +1,11 @@
 {% load static %}
+
 <div class="navbar">
-    <img src="{% static 'images/home.png' %}" alt="icon home">
-    <img src="{% static 'images/plus.png' %}" alt="icon home">
+    <a href="{% url 'home' %}">
+        <img src="{% static 'images/home.png' %}" alt="icon home">
+    </a>
+    <a href="{% url 'registration_spend' %}">
+        <img src="{% static 'images/plus.png' %}" alt="icon home">
+    </a>
     <img src="{% static 'images/user.png' %}" alt="icon home">
 </div>

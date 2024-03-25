@@ -1,0 +1,70 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'style/navbar.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'style/open_spend.css' %}">
+
+{% endblock %}
+
+{% block title %}Gasto Informações{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="item">
+        <div class="date-line">
+            <div date>
+                <label class="date_d">{{spending.spending.created_at|date:"d"}}</label>
+                <label class="date_m">{{spending.spending.created_at|date:"M"}}</label>
+            </div>
+            <div class="line"></div>
+        </div>
+        <div class="valeu-spending">
+            <p class="value" >R${{spending.spending.value}}</p>
+        </div>
+        <div class="container-felx-end">
+            <div class="cart-img">
+                <img src="{% static 'images/shopping-cart.png' %}" >
+            </div>
+            <div class="title-spending">
+                <p class="title">{{spending.spending.type|lower }}</p>
+                <p class="description">{{spending.spending.title|lower }}</p>
+            </div>
+            <div class="status-spending">
+                {% if spending.status == "PAGO"%}
+                    <p class="status" style="background-color: #99CE85; color:white" >{{spending.status|lower }}</p>
+                {% else %}
+                    <p class="status">{{spending.status|lower }}</p>
+                {% endif %}
+            </div>
+        </div>
+        <div class="description-spending">
+            <p id="title">Descrição: </p>
+            <p id="description">{{spending.spending.description }}</p>
+        </div>
+        {% if spending.spending.voucher != null %}
+        <p class="title-voucher">Comprovante: </p>
+        <div class="voucher" id="voucher">
+            <img src="{{spending.spending.voucher.url }}" alt="Comprovante" id="image-voucher" class="image-voucher">
+            <div class="overlay" id="overlay">
+                <img src="{{spending.spending.voucher.url }}" alt="Imagem Ampliada" class="enlarged-image" id="enlarged-Image">
+            </div>
+        </div>
+        {% endif %}
+        {% if spending.status != "PAGO" %}
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" name="status" id="status" class="bottom-status">Pagar</button>
+        </form>
+        {% endif %}
+    </div>
+</div>
+
+<script src="{% static 'js/zoom_image.js' %}"></script>
+  
+{% include "partials/navbar.html" %}
+
+{% endblock %}
+

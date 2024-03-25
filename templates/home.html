@@ -15,34 +15,36 @@
 
 <div class="container">
     {% for spendings in spending %}
-    <div class="item">
-        <div class="date-line">
-            <div date>
-                <label class="date_d">{{spendings.spending.created_at|date:"d"}}</label>
-                <label class="date_m">{{spendings.spending.created_at|date:"M"}}</label>
+    <a href="{% url 'open_spend' spendings.id %}" class="redirect">
+        <div class="item">
+            <div class="date-line">
+                <div date>
+                    <label class="date_d">{{spendings.spending.created_at|date:"d"}}</label>
+                    <label class="date_m">{{spendings.spending.created_at|date:"M"}}</label>
+                </div>
+                <div class="line"></div>
             </div>
-            <div class="line"></div>
+            <div class="valeu-spending">
+                <p class="value" >R${{spendings.spending.value}}</p>
+            </div>
+            <div class="container-felx-end">
+                <div class="cart-img">
+                    <img src="{% static 'images/shopping-cart.png' %}" >
+                </div>
+                <div class="title-spending">
+                    <p class="title">{{spendings.spending.type|lower }}</p>
+                    <p class="description">{{spendings.spending.title|lower }}</p>
+                </div>
+                <div class="status-spending">
+                    {% if spendings.status == "PAGO"%}
+                        <p class="status" style="background-color: #99CE85; color:white" >{{spendings.status|lower }}</p>
+                    {% else %}
+                        <p class="status">{{spendings.status|lower }}</p>
+                    {% endif %}
+                </div>
+            </div>
         </div>
-        <div class="valeu-spending">
-            <p class="value" >R${{spendings.spending.value}}</p>
-        </div>
-        <div class="container-felx-end">
-            <div class="cart-img">
-                <img src="{% static 'images/shopping-cart.png' %}" >
-            </div>
-            <div class="title-spending">
-                <p class="title">{{spendings.spending.type|lower }}</p>
-                <p class="description">{{spendings.spending.title|lower }}</p>
-            </div>
-            <div class="status-spending">
-                {% if spendings.status == "PAGO"%}
-                    <p class="status" style="background-color: #99CE85; color:white" >{{spendings.status|lower }}</p>
-                {% else %}
-                    <p class="status">{{spendings.status|lower }}</p>
-                {% endif %}
-            </div>
-        </div>
-    </div>
+    </a>
     {% endfor%}
 </div>
   

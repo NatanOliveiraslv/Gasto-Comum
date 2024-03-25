@@ -1,0 +1,53 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'style/registration_spend.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'style/navbar.css' %}">
+
+{% endblock %}
+
+{% block title %}Cadastrar Gasto{% endblock %}
+
+{% block content %}
+<div class="container">
+    <form method="post">
+        {% csrf_token %}
+        <div class="form">
+
+            {{ form.as_p }}
+
+            <!-- 
+            <label for="type">Tipo de gasto:</label>
+            <select id="type" name="type">
+                <option value="MERCADO">Mercado</option>
+                <option value="CASA">Casa</option>
+            </select>
+            <label for="title">Título do gasto:</label>
+            <input type="text" id="title" name="title" required /><br />
+            <label for="value">Valor:</label>
+            <input type="text" id="value" name="value" required /><br />
+            <label for="Divided">Divido em:</label>
+            <input type="text" id="Divided" name="Divided" required /><br />
+            <label for="voucher">Comprovante:</label>
+            <input type="text" id="voucher" name="voucher" required /><br />
+            <label for="description">Descrição:</label>
+            <textarea type="description" id="descricao" name="descricao" required></textarea><br />
+            <button class="buttonForm" type="submit">Cadastrar</button>
+            -->
+        </div>
+    </form>
+</div>
+
+<script>
+    {% for message in messages %}
+        alert("{{message}}");
+    {% endfor %}
+</script>
+  
+{% include "partials/navbar.html" %}
+
+{% endblock %}
+

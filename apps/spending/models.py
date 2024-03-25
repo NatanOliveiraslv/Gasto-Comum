@@ -15,7 +15,7 @@ class Spending(models.Model):
     title = models.CharField("Título", max_length=100, blank=False, null=False)
     value = models.FloatField('Valor', null=False, blank=False, default=0.0)
     divided_accounts = models.ManyToManyField(User, related_name='divided_spending_set', verbose_name='Conta(s) Dividida(s)')
-    voucher = models.ImageField('Comprovante', upload_to="images/", blank=True)
+    voucher = models.FileField('Comprovante', upload_to="images/", blank=True)
     description = models.TextField('Descrição', null=True, blank=True)
     registrar = models.ForeignKey(User, on_delete=models.CASCADE, related_name='registered_spending_set', null=False, blank=False, verbose_name='Regitrador')
     created_at = models.DateTimeField('Criado em', default=timezone.now)
