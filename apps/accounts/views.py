@@ -7,6 +7,14 @@ from django.contrib import messages
 from django.shortcuts import get_object_or_404
 from spending.models import Spending_Accounts
 from accounts.models import User as Accounts
+from django.http import JsonResponse
+
+
+def search_users(request):
+    query = request.GET.get('query', '')  # Obtenha o parâmetro 'query' da solicitação GET
+    matched_users = Accounts.objects.filter(first_name__icontains=query)  # Faça uma busca por usuários correspondentes
+    data = [{'name': user.first_name, 'email': user.email} for user in matched_users]  # Converta os resultados em um formato JSON
+    return JsonResponse(data, safe=False)
 
 def login(request):
     #Se a requsiçao passada for post

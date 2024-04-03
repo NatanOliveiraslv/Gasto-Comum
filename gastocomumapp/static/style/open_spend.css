@@ -1,5 +1,6 @@
 body {
     font-family: Arial, sans-serif;
+    padding-bottom: 50px;
 }
 
 .container {
@@ -175,10 +176,10 @@ body {
 }
 
 button.bottom-status {
-    position: fixed;
+    position: absolute;
     bottom: 12%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%);
     border: unset;
     background-color: #99CE85;
     color: white;

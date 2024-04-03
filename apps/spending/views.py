@@ -27,22 +27,22 @@ def open_spend(request, spending_id):
 
 def registration_spend(request):
     if request.user.is_authenticated:
-
         if request.method == "POST":
-            titulo = request.POST.get("titulo")
-            descricao = request.POST.get("descricao")
-            professor_autenticado = Professor.objects.get(user=User.objects.get(username=usuario)) #atribui a varaivel o professor autenticado
-            materia = Materia.objects.get(professor = professor_autenticado) #atribui a varaivel a materia do profeesor autenticado
-            # cria uma nova atividade
-            nova_atividade = Atividade.objects.create(
-                titulo=titulo,
-                descricao=descricao,
-                materia=materia,
-                turma=turma,
-            )
 
-            nova_atividade.save()
-            messages.success(request, 'Atividade cadastrada com sucesso!') 
+            accounts = get_object_or_404(Accounts, user=request.user) 
+            divided_accounts =  Accounts.objects.filter(email__in=request.POST.getlist("emails"))
+            form = SpendingForm(request.POST, request.FILES)
+
+            if form.is_valid():
+                # Salve o objeto Spending com base nos dados do formulário
+                spending = form.save(commit=False)
+                spending.registrar = accounts # Atribua o usuário atual como o registrador
+                spending.save()
+                spending.divided_accounts.set(divided_accounts)
+
+            registration_spending_accounts(spending)
+            
+            messages.success(request, 'Gasto cadastrado com sucesso!')
             return redirect('registration_spend')
         else:
             try:
@@ -54,3 +54,6 @@ def registration_spend(request):
     else:
         messages.error(request, 'Usuário não autenticado. Faça o login para acessar a pagina desejada.')
         return redirect('index')
+
+def registration_spending_accounts(spending):
+    print(spending.divided_accounts.all())

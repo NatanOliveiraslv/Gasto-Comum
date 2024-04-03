@@ -14,3 +14,4 @@ class User(models.Model):
     class Meta:
         verbose_name = 'Contas'
         verbose_name_plural = 'Contas'
+        ordering =['id']
