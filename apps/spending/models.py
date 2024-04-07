@@ -11,7 +11,7 @@ class Spending(models.Model):
         ('CASA','Casa'),
         ]
     
-    type = models.CharField('Tipo', max_length=100, choices=SPEND_TYPES, default='')
+    type = models.CharField('Tipo', max_length=100, choices=SPEND_TYPES, default='', null=False)
     title = models.CharField("Título", max_length=100, blank=False, null=False)
     value = models.FloatField('Valor', null=False, blank=False, default=0.0)
     divided_accounts = models.ManyToManyField(User, related_name='divided_spending_set', verbose_name='Conta(s) Dividida(s)')
@@ -38,6 +38,7 @@ class Spending_Accounts(models.Model):
     spending = models.ForeignKey(Spending, on_delete=models.CASCADE, verbose_name='Gasto Relacionado')
     accounts = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Conta Relacionada')
     status = models.CharField('Status', max_length=100, choices=SPEND_STATUS, default='')
+    value = models.FloatField('Valor', null=False, blank=False, default=0.0)
     
     def __str__(self):
         return self.status

@@ -13,20 +13,33 @@
 
 {% block content %}
   <div class="container">
-    <form method="post" enctype="multipart/form-data">
+    <form method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
       {% csrf_token %}
       <div class="form">
-
-        <label for="Divided">Conta(s) Dividida(s): </label>
+        <label for="Divided">Conta(s) Dividida(s):</label>
         <div class="classDivided">
           <div class="arrow"></div>
           <div id="emailContainer"></div>
         </div>
-        <input type="text" id="userInput" placeholder="Digite o email..." />
-        <div id="userList"></div>
-        
-        {{ form.as_table }}
-
+        <span id="emailError" class="error" style="display: none;">Preencha este campo</span>
+        <div class="divUserInput" id="divUserInput">
+          <input type="text" id="userInput" placeholder="Digite o email..." />
+          <div id="userList"></div>
+        </div>
+        <label id="id_type" for="id_type">Tipo:</label>
+        <select name="type" id="id_type" required>
+          <option value="" selected disabled>Selecione um tipo</option>
+          <option value="MERCADO">Mercado</option>
+          <option value="CASA">Casa</option>
+        </select>
+        <label for="id_title">Título:</label>
+        <input type="text" name="title" maxlength="100" id="id_title" required/>
+        <label for="id_value">Valor:</label>
+        <input type="number" name="value" step="any" id="id_value" required/>
+        <label for="id_voucher">Comprovante:</label>
+        <input type="file" name="voucher" accept=".jpg, .png, .pdf" id="id_voucher" />
+        <label for="id_description">Descrição:</label>
+        <textarea name="description" cols="40" rows="10" id="id_description"></textarea>
         <button class="buttonForm" type="submit">Cadastrar</button>
       </div>
     </form>
@@ -39,14 +52,7 @@
         alert("{{message}}");
     {% endfor %}
   </script>
-
-  <script>
-    $(document).ready(function() {
-      $('.classDivided .arrow').on('click', function() {
-        $('#userInput').toggle(); // Alterna a exibição do input#userInput
-      });
-    });
-  </script>
+    
 
 {% include 'partials/navbar.html' %}
 {% endblock %}

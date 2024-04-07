@@ -19,9 +19,16 @@ form{
 input, select{
     margin-bottom: 15px;
     height: 26px;
-    border-radius: 20px;
-    border: 1.9px solid #bbbbbb;
+    border-radius: 9px;
+    border: 1px solid #bbbbbb;
     padding: 0px 12px;
+}
+
+
+input#id_voucher {
+    padding: 8px 12px;
+    cursor: pointer;
+    color: #666;
 }
 
 label{
@@ -29,12 +36,17 @@ label{
     padding-left: 18px;
 }
 
+label#id_type {
+    margin-top: 15px;
+}
+
 textarea {
     margin-bottom: 15px;
     height: 150px;
-    border-radius: 20px;
-    border: 1.9px solid #bbbbbb;
-    padding: 0px 12px;
+    border-radius: 9px;
+    border: 1px solid #bbbbbb;
+    padding: 5px 12px 5px;
+    font-family: Arial, sans-serif;
 }
 
 
@@ -102,15 +114,19 @@ button.buttonForm {
 }
 
 .classDivided{
-    margin-bottom: 15px;
-    border-radius: 20px;
-    border: 1.9px solid #bbbbbb;
+    border-radius: 9px;
+    border: 1px solid #bbbbbb;
     min-height: 26px;
     position: relative;
 }
 
+
 #userInput{
     display: none;
+    box-sizing: border-box;
+    width: 97%;
+    margin-top: 9px;
+    border-radius: 6px;
 }
 
 .arrow {
@@ -125,3 +141,12 @@ button.buttonForm {
     border-width: 5px 5px 0px 5px;
     border-color: black transparent transparent transparent;
 }
+
+.divUserInput {
+    display: none;
+    border: 1px solid #bbbbbb;
+    border-radius: 9px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+

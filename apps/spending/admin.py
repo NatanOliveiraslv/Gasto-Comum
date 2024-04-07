@@ -15,7 +15,7 @@ def marcar_como_pendente(modeladmin, request, queryset):
 marcar_como_pendente.short_description = "Marcar como Pendente"  # Descrição da ação
 
 class GastoAdmin(admin.ModelAdmin):
-    list_display = ['id', 'spending', 'accounts', 'status']
+    list_display = ['id', 'spending', 'accounts', 'status', 'value']
     actions = [marcar_como_pago, marcar_como_pendente]  # Adiciona a ação personalizada ao admin
 
 admin.site.register(Spending_Accounts, GastoAdmin)

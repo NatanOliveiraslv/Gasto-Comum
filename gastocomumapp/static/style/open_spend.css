@@ -19,7 +19,7 @@ body {
     display: block;
     border-radius: 20px;
     margin: 4px;
-    height: 85vh;
+    height: 80vh;
 }
 
 .date {
@@ -170,14 +170,15 @@ body {
 
 .enlarged-image {
     display: block;
-    margin: 50% auto;
+    margin: auto;
+    margin-top: 5%;
     max-width: 90%;
     max-height: 90%;
 }
 
 button.bottom-status {
     position: absolute;
-    bottom: 12%;
+    bottom: 14%;
     left: 50%;
     transform: translate(-50%);
     border: unset;

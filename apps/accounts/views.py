@@ -43,6 +43,7 @@ def home(request):
             spending = Spending_Accounts.objects.filter(accounts = accounts)
             return render(request, 'home.html', {'spending':spending})
         except:
+            print(Exception)
             return redirect('index')
     else:
         messages.error(request, 'Usuário não autenticado. Faça o login para acessar a pagina desejada.')

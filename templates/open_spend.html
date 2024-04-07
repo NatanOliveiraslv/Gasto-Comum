@@ -22,7 +22,7 @@
             <div class="line"></div>
         </div>
         <div class="valeu-spending">
-            <p class="value" >R${{spending.spending.value}}</p>
+            <p class="value" >R${{spending.value}}</p>
         </div>
         <div class="container-felx-end">
             <div class="cart-img">
@@ -40,11 +40,13 @@
                 {% endif %}
             </div>
         </div>
+        {% if spending.spending.description != "" %}
         <div class="description-spending">
             <p id="title">Descrição: </p>
             <p id="description">{{spending.spending.description }}</p>
         </div>
-        {% if spending.spending.voucher != null %}
+        {% endif %}
+        {% if spending.spending.voucher != "" %}
         <p class="title-voucher">Comprovante: </p>
         <div class="voucher" id="voucher">
             <img src="{{spending.spending.voucher.url }}" alt="Comprovante" id="image-voucher" class="image-voucher">

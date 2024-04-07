@@ -15,6 +15,7 @@ $(document).ready(function() {
               var email = user.email;
               if (!selectedEmails.includes(email)) {
                 if ($('#userList').find('.autocomplete-item:contains("' + email + '")').length === 0) {
+                  $('#userList').css({'margin-right':'auto', 'padding-left':'8px', 'margin-bottom':'8px'});
                   $('#userList').append('<div class="autocomplete-item">' + email + '</div>');
                 }
               }
@@ -54,3 +55,25 @@ $(document).ready(function() {
       });
     }
 });
+
+$(document).ready(function() {
+  $('.classDivided .arrow').on('click', function() {
+    $('#userInput').toggle();
+    if ($('#divUserInput').css('display') === 'flex') {
+      // Se estiver sendo exibido, mude para display: none
+      $('#divUserInput').css('display', 'none');
+    } else {
+      // Se estiver oculto, mude para display: flex
+      $('#divUserInput').css('display', 'flex');
+    }
+  });
+});
+
+function validateForm() {
+  var emailContainer = document.getElementById("emailContainer");
+  if (emailContainer.innerText.trim() === "") {
+    alert("Por favor, preencha o campo de email antes de enviar o formulário.");
+    return false; // Impede o envio do formulário
+  }
+  return true; // Permite o envio do formulário
+}
